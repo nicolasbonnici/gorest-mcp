@@ -1,0 +1,53 @@
+# Git
+.git
+.gitignore
+.githooks
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+*~
+
+# Build artifacts
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Test coverage
+coverage.out
+coverage.html
+*.coverprofile
+
+# Dependencies
+vendor/
+
+# Documentation (not needed in container)
+*.md
+docs/
+
+# Examples (already copied in Dockerfile)
+examples/
+
+# Tests
+tests/
+*_test.go
+
+# Environment
+.env
+.env.local
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Misc
+tmp/
+temp/
+.DS_Store

@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - JWT_SECRET=${JWT_SECRET:-your-secret-key-change-in-production-min-32-chars}
+      - MCP_ENABLED=true
+      - MCP_LOG_LEVEL=info
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 3s
+      start_period: 5s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - gorest-mcp
+
+  # Optional: PostgreSQL database
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_DB=gorest
+      - POSTGRES_USER=gorest
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-gorest}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - gorest-mcp
+    restart: unless-stopped
+
+  # Optional: MySQL database
+  mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_DATABASE=gorest
+      - MYSQL_USER=gorest
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-gorest}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-rootpassword}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - gorest-mcp
+    restart: unless-stopped
+    command: --default-authentication-plugin=mysql_native_password
+
+networks:
+  gorest-mcp:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  mysql_data:

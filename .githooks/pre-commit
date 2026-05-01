@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# Pre-commit hook for gorest-mcp
+# This hook runs before each commit to ensure code quality
+
+set -e
+
+echo "Running pre-commit checks..."
+
+# Format code
+echo "→ Formatting code..."
+go fmt ./...
+
+# Vet code
+echo "→ Vetting code..."
+go vet ./...
+
+# Run tests
+echo "→ Running tests..."
+go test -race -short ./...
+
+echo "✓ Pre-commit checks passed!"

@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "gorest": {
+      "url": "http://localhost:8080/mcp",
+      "transport": "sse",
+      "headers": {
+        "Authorization": "Bearer YOUR_JWT_TOKEN_HERE"
+      },
+      "description": "GoREST MCP Server - Provides CRUD operations and schema introspection for GoREST APIs"
+    }
+  }
+}
