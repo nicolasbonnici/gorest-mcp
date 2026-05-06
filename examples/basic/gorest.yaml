@@ -1,0 +1,59 @@
+server:
+  scheme: http
+  host: localhost
+  port: 8080
+  environment: development
+  cors_origins: "http://localhost:8080,http://localhost:3000"
+
+database:
+  url: "sqlite://gorest_mcp_example.db"
+
+pagination:
+  default_limit: 20
+  max_limit: 100
+
+auth:
+  enabled: true
+  jwt_secret: ${JWT_SECRET:-test-secret-key-min-32-chars-long}
+  jwt_ttl: 900
+  migrations:
+    enabled: true
+    auto_migrate: true
+
+rbac:
+  enabled: true
+  default_policy: deny_all
+  superuser_role: admin
+  cache_enabled: true
+  cache_ttl: 300
+  migrations:
+    enabled: true
+    auto_migrate: true
+
+plugins:
+- name: mcp
+  enabled: true
+  config:
+    # Enable MCP server
+    enabled: true
+
+    # Enabled operations (crud, schema)
+    enabled_operations:
+      - crud
+      - schema
+
+    # Rate limiting (requests per minute)
+    rate_limit:
+      enabled: true
+      requests_per_minute: 60
+      burst: 10
+
+    # SSE settings
+    sse:
+      heartbeat_interval: 30         # Seconds between heartbeat events
+      connection_timeout: 300        # Seconds before idle connection closes
+      max_connections_per_user: 3    # Max concurrent SSE connections
+
+    # Logging
+    log_requests: true
+    log_level: "info"                # debug, info, warn, error

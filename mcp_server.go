@@ -6,8 +6,8 @@ import (
 	"log/slog"
 
 	"github.com/mark3labs/mcp-go/server"
-	"github.com/nicolasbonnici/gorest/database"
 	"github.com/nicolasbonnici/gorest-mcp/tools"
+	"github.com/nicolasbonnici/gorest/database"
 )
 
 type MCPServer struct {

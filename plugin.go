@@ -88,5 +88,10 @@ func (p *Plugin) handleSSE(c *fiber.Ctx) error {
 	return HandleSSE(c, p.mcpServer, p.config, p.logger)
 }
 
+// NewPlugin creates a new MCP plugin instance
+func NewPlugin() plugin.Plugin {
+	return &Plugin{}
+}
+
 var _ plugin.Plugin = (*Plugin)(nil)
 var _ plugin.EndpointSetup = (*Plugin)(nil)

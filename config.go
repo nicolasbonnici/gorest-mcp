@@ -7,12 +7,12 @@ import (
 
 // Config holds the MCP plugin configuration
 type Config struct {
-	Enabled           bool              `json:"enabled" yaml:"enabled"`
-	EnabledOperations []string          `json:"enabled_operations" yaml:"enabled_operations"`
-	RateLimit         RateLimitConfig   `json:"rate_limit" yaml:"rate_limit"`
-	SSE               SSEConfig         `json:"sse" yaml:"sse"`
-	LogRequests       bool              `json:"log_requests" yaml:"log_requests"`
-	LogLevel          string            `json:"log_level" yaml:"log_level"`
+	Enabled           bool            `json:"enabled" yaml:"enabled"`
+	EnabledOperations []string        `json:"enabled_operations" yaml:"enabled_operations"`
+	RateLimit         RateLimitConfig `json:"rate_limit" yaml:"rate_limit"`
+	SSE               SSEConfig       `json:"sse" yaml:"sse"`
+	LogRequests       bool            `json:"log_requests" yaml:"log_requests"`
+	LogLevel          string          `json:"log_level" yaml:"log_level"`
 }
 
 // RateLimitConfig configures rate limiting for MCP requests
@@ -24,8 +24,8 @@ type RateLimitConfig struct {
 
 // SSEConfig configures Server-Sent Events behavior
 type SSEConfig struct {
-	HeartbeatInterval     int `json:"heartbeat_interval" yaml:"heartbeat_interval"`         // Seconds
-	ConnectionTimeout     int `json:"connection_timeout" yaml:"connection_timeout"`         // Seconds
+	HeartbeatInterval     int `json:"heartbeat_interval" yaml:"heartbeat_interval"` // Seconds
+	ConnectionTimeout     int `json:"connection_timeout" yaml:"connection_timeout"` // Seconds
 	MaxConnectionsPerUser int `json:"max_connections_per_user" yaml:"max_connections_per_user"`
 }
 

@@ -144,9 +144,9 @@ func TestParseConfig(t *testing.T) {
 		{
 			name: "valid map config",
 			input: map[string]interface{}{
-				"enabled": true,
+				"enabled":            true,
 				"enabled_operations": []interface{}{"crud", "schema"},
-				"log_level": "debug",
+				"log_level":          "debug",
 			},
 			wantErr: false,
 		},

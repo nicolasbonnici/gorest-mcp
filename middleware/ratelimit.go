@@ -11,8 +11,8 @@ import (
 type RateLimiter struct {
 	mu       sync.RWMutex
 	limiters map[string]*rate.Limiter // user_id -> limiter
-	rpm      int                       // Requests per minute
-	burst    int                       // Burst capacity
+	rpm      int                      // Requests per minute
+	burst    int                      // Burst capacity
 }
 
 // NewRateLimiter creates a new rate limiter

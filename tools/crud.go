@@ -1,6 +1,7 @@
 package tools
 
 import (
+	"context"
 	"fmt"
 	"log/slog"
 
@@ -152,11 +153,12 @@ func (ct *CRUDTools) GetDeleteResourceTool() (mcp.Tool, server.ToolHandlerFunc) 
 
 // Tool handlers - TODO: implement full CRUD with RBAC in separate task
 
-func (ct *CRUDTools) handleListResources(args map[string]interface{}) (*mcp.CallToolResult, error) {
+func (ct *CRUDTools) handleListResources(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	args := request.GetArguments()
 	ct.logger.Info("handleListResources called", "arguments", args)
 
 	return &mcp.CallToolResult{
-		Content: []interface{}{
+		Content: []mcp.Content{
 			mcp.TextContent{
 				Type: "text",
 				Text: fmt.Sprintf("List resources tool called with arguments: %v\n\nNote: Full CRUD implementation with RBAC coming soon", args),
@@ -165,11 +167,12 @@ func (ct *CRUDTools) handleListResources(args map[string]interface{}) (*mcp.Call
 	}, nil
 }
 
-func (ct *CRUDTools) handleGetResource(args map[string]interface{}) (*mcp.CallToolResult, error) {
+func (ct *CRUDTools) handleGetResource(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	args := request.GetArguments()
 	ct.logger.Info("handleGetResource called", "arguments", args)
 
 	return &mcp.CallToolResult{
-		Content: []interface{}{
+		Content: []mcp.Content{
 			mcp.TextContent{
 				Type: "text",
 				Text: fmt.Sprintf("Get resource tool called with arguments: %v\n\nNote: Full CRUD implementation with RBAC coming soon", args),
@@ -178,11 +181,12 @@ func (ct *CRUDTools) handleGetResource(args map[string]interface{}) (*mcp.CallTo
 	}, nil
 }
 
-func (ct *CRUDTools) handleCreateResource(args map[string]interface{}) (*mcp.CallToolResult, error) {
+func (ct *CRUDTools) handleCreateResource(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	args := request.GetArguments()
 	ct.logger.Info("handleCreateResource called", "arguments", args)
 
 	return &mcp.CallToolResult{
-		Content: []interface{}{
+		Content: []mcp.Content{
 			mcp.TextContent{
 				Type: "text",
 				Text: fmt.Sprintf("Create resource tool called with arguments: %v\n\nNote: Full CRUD implementation with RBAC coming soon", args),
@@ -191,11 +195,12 @@ func (ct *CRUDTools) handleCreateResource(args map[string]interface{}) (*mcp.Cal
 	}, nil
 }
 
-func (ct *CRUDTools) handleUpdateResource(args map[string]interface{}) (*mcp.CallToolResult, error) {
+func (ct *CRUDTools) handleUpdateResource(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	args := request.GetArguments()
 	ct.logger.Info("handleUpdateResource called", "arguments", args)
 
 	return &mcp.CallToolResult{
-		Content: []interface{}{
+		Content: []mcp.Content{
 			mcp.TextContent{
 				Type: "text",
 				Text: fmt.Sprintf("Update resource tool called with arguments: %v\n\nNote: Full CRUD implementation with RBAC coming soon", args),
@@ -204,11 +209,12 @@ func (ct *CRUDTools) handleUpdateResource(args map[string]interface{}) (*mcp.Cal
 	}, nil
 }
 
-func (ct *CRUDTools) handleDeleteResource(args map[string]interface{}) (*mcp.CallToolResult, error) {
+func (ct *CRUDTools) handleDeleteResource(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+	args := request.GetArguments()
 	ct.logger.Info("handleDeleteResource called", "arguments", args)
 
 	return &mcp.CallToolResult{
-		Content: []interface{}{
+		Content: []mcp.Content{
 			mcp.TextContent{
 				Type: "text",
 				Text: fmt.Sprintf("Delete resource tool called with arguments: %v\n\nNote: Full CRUD implementation with RBAC coming soon", args),

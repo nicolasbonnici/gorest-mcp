@@ -70,13 +70,13 @@ const (
 	CodeInternalError  = -32603
 
 	// Custom error codes (application-specific)
-	CodeUnauthorized          = -32000
-	CodeForbidden             = -32001
-	CodeRateLimitExceeded     = -32002
-	CodeResourceNotFound      = -32003
-	CodeOperationDisabled     = -32004
+	CodeUnauthorized           = -32000
+	CodeForbidden              = -32001
+	CodeRateLimitExceeded      = -32002
+	CodeResourceNotFound       = -32003
+	CodeOperationDisabled      = -32004
 	CodeMaxConnectionsExceeded = -32005
-	CodeConnectionTimeout     = -32006
+	CodeConnectionTimeout      = -32006
 )
 
 // WrapError wraps a standard error into an MCPError

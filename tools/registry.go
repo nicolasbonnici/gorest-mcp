@@ -44,11 +44,11 @@ func (r *Registry) RegisterCRUDTools(mcpServer *server.MCPServer) error {
 func (r *Registry) RegisterSchemaResources(mcpServer *server.MCPServer) error {
 	schemaProvider := NewSchemaProvider(r.db, r.logger)
 
-	uri, handler := schemaProvider.GetResourcesListResource()
-	mcpServer.AddResource(uri, handler)
+	resource, handler := schemaProvider.GetResourcesListResource()
+	mcpServer.AddResource(resource, handler)
 
-	uriTemplate, templateHandler := schemaProvider.GetSchemaResourceTemplate()
-	mcpServer.AddResourceTemplate(uriTemplate, templateHandler)
+	template, templateHandler := schemaProvider.GetSchemaResourceTemplate()
+	mcpServer.AddResourceTemplate(template, templateHandler)
 
 	r.logger.Info("Schema resources registered successfully")
 	return nil
