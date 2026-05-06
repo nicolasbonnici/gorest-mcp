@@ -4,7 +4,7 @@ go 1.26
 
 require (
 	github.com/gofiber/fiber/v2 v2.52.13
-	github.com/mark3labs/mcp-go v0.51.0
+	github.com/mark3labs/mcp-go v0.52.0
 	github.com/nicolasbonnici/gorest v0.5.6
 	github.com/stretchr/testify v1.11.1
 	golang.org/x/time v0.15.0
@@ -41,7 +41,7 @@ require (
 	github.com/spf13/cast v1.10.0 // indirect
 	github.com/tinylib/msgp v1.6.4 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
-	github.com/valyala/fasthttp v1.70.0 // indirect
+	github.com/valyala/fasthttp v1.71.0 // indirect
 	github.com/yosida95/uritemplate/v3 v3.0.2 // indirect
 	golang.org/x/crypto v0.50.0 // indirect
 	golang.org/x/sync v0.20.0 // indirect
