@@ -5,7 +5,7 @@ go 1.26
 require (
 	github.com/gofiber/fiber/v2 v2.52.13
 	github.com/mark3labs/mcp-go v0.54.0
-	github.com/nicolasbonnici/gorest v0.5.9
+	github.com/nicolasbonnici/gorest v0.5.11
 	github.com/stretchr/testify v1.11.1
 	golang.org/x/time v0.15.0
 )
@@ -51,5 +51,5 @@ require (
 	modernc.org/libc v1.72.3 // indirect
 	modernc.org/mathutil v1.7.1 // indirect
 	modernc.org/memory v1.11.0 // indirect
-	modernc.org/sqlite v1.50.0 // indirect
+	modernc.org/sqlite v1.50.1 // indirect
 )
