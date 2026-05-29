@@ -39,7 +39,7 @@ services:
 
   # Optional: MySQL database
   mysql:
-    image: mysql:8.4
+    image: mysql:9.7
     environment:
       - MYSQL_DATABASE=gorest
       - MYSQL_USER=gorest
