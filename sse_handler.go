@@ -8,7 +8,7 @@ import (
 
 	"log/slog"
 
-	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v3"
 	"github.com/mark3labs/mcp-go/server"
 	"github.com/nicolasbonnici/gorest-mcp/middleware"
 )
@@ -50,7 +50,7 @@ func (cp *ConnectionPool) RemoveConnection(userID string) {
 	}
 }
 
-func HandleSSE(c *fiber.Ctx, mcpServer *MCPServer, config *Config, log *slog.Logger) error {
+func HandleSSE(c fiber.Ctx, mcpServer *MCPServer, config *Config, log *slog.Logger) error {
 	// Validate JWT and extract user context
 	userID, userEmail, err := middleware.ValidateJWT(c, log)
 	if err != nil {
@@ -94,7 +94,7 @@ func HandleSSE(c *fiber.Ctx, mcpServer *MCPServer, config *Config, log *slog.Log
 // handleMCPSSETransport manages the MCP SSE transport lifecycle
 func handleMCPSSETransport(
 	ctx context.Context,
-	c *fiber.Ctx,
+	c fiber.Ctx,
 	mcpServer *server.MCPServer,
 	config *Config,
 	log *slog.Logger,

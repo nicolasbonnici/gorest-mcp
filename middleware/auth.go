@@ -5,10 +5,10 @@ import (
 	"log/slog"
 	"strings"
 
-	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v3"
 )
 
-func ValidateJWT(c *fiber.Ctx, log *slog.Logger) (string, string, error) {
+func ValidateJWT(c fiber.Ctx, log *slog.Logger) (string, string, error) {
 	// Get Authorization header
 	authHeader := c.Get("Authorization")
 	if authHeader == "" {

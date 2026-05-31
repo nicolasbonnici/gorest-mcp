@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log/slog"
 
-	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v3"
 	"github.com/nicolasbonnici/gorest/database"
 	"github.com/nicolasbonnici/gorest/logger"
 	"github.com/nicolasbonnici/gorest/plugin"
@@ -68,7 +68,7 @@ func (p *Plugin) Initialize(cfg map[string]any) error {
 }
 
 func (p *Plugin) Handler() fiber.Handler {
-	return func(c *fiber.Ctx) error {
+	return func(c fiber.Ctx) error {
 		return c.Next()
 	}
 }
@@ -84,7 +84,7 @@ func (p *Plugin) SetupEndpoints(router fiber.Router) error {
 	return nil
 }
 
-func (p *Plugin) handleSSE(c *fiber.Ctx) error {
+func (p *Plugin) handleSSE(c fiber.Ctx) error {
 	return HandleSSE(c, p.mcpServer, p.config, p.logger)
 }
 
