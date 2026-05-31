@@ -3,7 +3,7 @@ module github.com/nicolasbonnici/gorest-mcp
 go 1.26
 
 require (
-	github.com/gofiber/fiber/v2 v2.52.13
+	github.com/gofiber/fiber/v3 v3.3.0
 	github.com/gofiber/fiber/v3 v3.3.0
 	github.com/mark3labs/mcp-go v0.54.1
 	github.com/nicolasbonnici/gorest v0.5.15
