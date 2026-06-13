@@ -7,16 +7,12 @@ set -e
 
 echo "Running pre-commit checks..."
 
-# Format code
-echo "→ Formatting code..."
-go fmt ./...
-
-# Vet code
-echo "→ Vetting code..."
-go vet ./...
+# Run quality checks
+echo "→ Running quality checks..."
+make lint
 
 # Run tests
 echo "→ Running tests..."
-go test -race -short ./...
+make test
 
 echo "✓ Pre-commit checks passed!"
