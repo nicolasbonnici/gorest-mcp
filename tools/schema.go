@@ -10,32 +10,10 @@ import (
 	"github.com/nicolasbonnici/gorest/database"
 )
 
-type SchemaProvider struct {
-	db     database.Database
-	logger *slog.Logger
-}
-
-func NewSchemaProvider(db database.Database, log *slog.Logger) *SchemaProvider {
-	return &SchemaProvider{
-		db:     db,
-		logger: log,
-	}
-}
-
-func (sp *SchemaProvider) GetResourcesListResource() (mcp.Resource, server.ResourceHandlerFunc) {
-	resource := mcp.NewResource(
-		"gorest://resources",
-		"Resources List",
-		func(r *mcp.Resource) {
-			r.Description = "List of all available GoREST resources"
-			r.MIMEType = "application/json"
-		},
-	)
-
-	handler := func(ctx context.Context, request mcp.ReadResourceRequest) ([]mcp.ResourceContents, error) {
-		sp.logger.Info("ResourcesList called")
-
-		content := `{
+// Placeholder schema payloads are constant until full introspection lands, so
+// they live as package-level strings instead of being reallocated per request.
+const (
+	resourcesListJSON = `{
   "resources": [
     {
       "name": "example",
@@ -53,33 +31,7 @@ func (sp *SchemaProvider) GetResourcesListResource() (mcp.Resource, server.Resou
   "note": "Full schema introspection coming soon"
 }`
 
-		return []mcp.ResourceContents{
-			mcp.TextResourceContents{
-				URI:      "gorest://resources",
-				MIMEType: "application/json",
-				Text:     content,
-			},
-		}, nil
-	}
-	return resource, handler
-}
-
-func (sp *SchemaProvider) GetSchemaResourceTemplate() (mcp.ResourceTemplate, server.ResourceTemplateHandlerFunc) {
-	template := mcp.NewResourceTemplate(
-		"gorest://schema/{resource}",
-		"Resource Schema",
-		func(t *mcp.ResourceTemplate) {
-			t.Description = "Get schema definition for a specific resource"
-			t.MIMEType = "application/json"
-		},
-	)
-
-	handler := func(ctx context.Context, request mcp.ReadResourceRequest) ([]mcp.ResourceContents, error) {
-		sp.logger.Info("GetSchema called", "uri", request.Params.URI)
-
-		// Extract resource name from URI
-		// For now, return a placeholder - full implementation in v0.2.0
-		content := `{
+	exampleSchemaJSON = `{
   "resource": "example",
   "table": "examples",
   "fields": [
@@ -107,23 +59,9 @@ func (sp *SchemaProvider) GetSchemaResourceTemplate() (mcp.ResourceTemplate, ser
   "note": "Full schema introspection coming soon"
 }`
 
-		return []mcp.ResourceContents{
-			mcp.TextResourceContents{
-				URI:      request.Params.URI,
-				MIMEType: "application/json",
-				Text:     content,
-			},
-		}, nil
-	}
-	return template, handler
-}
-
-func (sp *SchemaProvider) GetSchemaForResource(resource string) ([]interface{}, error) {
-	sp.logger.Info("GetSchema called", "resource", resource)
-
-	content := fmt.Sprintf(`{
-  "resource": "%s",
-  "table": "%s",
+	schemaForResourceTmpl = `{
+  "resource": "%[1]s",
+  "table": "%[1]s",
   "fields": [
     {
       "name": "id",
@@ -147,7 +85,73 @@ func (sp *SchemaProvider) GetSchemaForResource(resource string) ([]interface{}, 
     }
   ],
   "note": "Full schema introspection coming soon"
-}`, resource, resource)
+}`
+)
+
+type SchemaProvider struct {
+	db     database.Database
+	logger *slog.Logger
+}
+
+func NewSchemaProvider(db database.Database, log *slog.Logger) *SchemaProvider {
+	return &SchemaProvider{
+		db:     db,
+		logger: log,
+	}
+}
+
+func (sp *SchemaProvider) GetResourcesListResource() (mcp.Resource, server.ResourceHandlerFunc) {
+	resource := mcp.NewResource(
+		"gorest://resources",
+		"Resources List",
+		func(r *mcp.Resource) {
+			r.Description = "List of all available GoREST resources"
+			r.MIMEType = "application/json"
+		},
+	)
+
+	handler := func(ctx context.Context, request mcp.ReadResourceRequest) ([]mcp.ResourceContents, error) {
+		sp.logger.Info("ResourcesList called")
+
+		return []mcp.ResourceContents{
+			mcp.TextResourceContents{
+				URI:      "gorest://resources",
+				MIMEType: "application/json",
+				Text:     resourcesListJSON,
+			},
+		}, nil
+	}
+	return resource, handler
+}
+
+func (sp *SchemaProvider) GetSchemaResourceTemplate() (mcp.ResourceTemplate, server.ResourceTemplateHandlerFunc) {
+	template := mcp.NewResourceTemplate(
+		"gorest://schema/{resource}",
+		"Resource Schema",
+		func(t *mcp.ResourceTemplate) {
+			t.Description = "Get schema definition for a specific resource"
+			t.MIMEType = "application/json"
+		},
+	)
+
+	handler := func(ctx context.Context, request mcp.ReadResourceRequest) ([]mcp.ResourceContents, error) {
+		sp.logger.Info("GetSchema called", "uri", request.Params.URI)
+
+		return []mcp.ResourceContents{
+			mcp.TextResourceContents{
+				URI:      request.Params.URI,
+				MIMEType: "application/json",
+				Text:     exampleSchemaJSON,
+			},
+		}, nil
+	}
+	return template, handler
+}
+
+func (sp *SchemaProvider) GetSchemaForResource(resource string) ([]interface{}, error) {
+	sp.logger.Info("GetSchema called", "resource", resource)
+
+	content := fmt.Sprintf(schemaForResourceTmpl, resource)
 
 	return []interface{}{
 		mcp.TextContent{

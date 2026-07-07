@@ -22,8 +22,11 @@ func NewCRUDTools(db database.Database, log *slog.Logger) *CRUDTools {
 	}
 }
 
-func (ct *CRUDTools) GetListResourcesTool() (mcp.Tool, server.ToolHandlerFunc) {
-	tool := mcp.Tool{
+// Tool input schemas are immutable and identical across every server and call,
+// so they are built once at package initialization rather than reallocated on
+// each registration. The Get*Tool accessors below hand back these shared values.
+var (
+	listResourcesToolDef = mcp.Tool{
 		Name:        "gorest_list_resources",
 		Description: "List all resources with pagination and filtering",
 		InputSchema: mcp.ToolInputSchema{
@@ -60,11 +63,8 @@ func (ct *CRUDTools) GetListResourcesTool() (mcp.Tool, server.ToolHandlerFunc) {
 			},
 		},
 	}
-	return tool, ct.handleListResources
-}
 
-func (ct *CRUDTools) GetGetResourceTool() (mcp.Tool, server.ToolHandlerFunc) {
-	tool := mcp.Tool{
+	getResourceToolDef = mcp.Tool{
 		Name:        "gorest_get_resource",
 		Description: "Get a single resource by ID",
 		InputSchema: mcp.ToolInputSchema{
@@ -81,11 +81,8 @@ func (ct *CRUDTools) GetGetResourceTool() (mcp.Tool, server.ToolHandlerFunc) {
 			},
 		},
 	}
-	return tool, ct.handleGetResource
-}
 
-func (ct *CRUDTools) GetCreateResourceTool() (mcp.Tool, server.ToolHandlerFunc) {
-	tool := mcp.Tool{
+	createResourceToolDef = mcp.Tool{
 		Name:        "gorest_create_resource",
 		Description: "Create a new resource",
 		InputSchema: mcp.ToolInputSchema{
@@ -102,11 +99,8 @@ func (ct *CRUDTools) GetCreateResourceTool() (mcp.Tool, server.ToolHandlerFunc) 
 			},
 		},
 	}
-	return tool, ct.handleCreateResource
-}
 
-func (ct *CRUDTools) GetUpdateResourceTool() (mcp.Tool, server.ToolHandlerFunc) {
-	tool := mcp.Tool{
+	updateResourceToolDef = mcp.Tool{
 		Name:        "gorest_update_resource",
 		Description: "Update an existing resource",
 		InputSchema: mcp.ToolInputSchema{
@@ -127,11 +121,8 @@ func (ct *CRUDTools) GetUpdateResourceTool() (mcp.Tool, server.ToolHandlerFunc) 
 			},
 		},
 	}
-	return tool, ct.handleUpdateResource
-}
 
-func (ct *CRUDTools) GetDeleteResourceTool() (mcp.Tool, server.ToolHandlerFunc) {
-	tool := mcp.Tool{
+	deleteResourceToolDef = mcp.Tool{
 		Name:        "gorest_delete_resource",
 		Description: "Delete a resource by ID",
 		InputSchema: mcp.ToolInputSchema{
@@ -148,7 +139,26 @@ func (ct *CRUDTools) GetDeleteResourceTool() (mcp.Tool, server.ToolHandlerFunc) 
 			},
 		},
 	}
-	return tool, ct.handleDeleteResource
+)
+
+func (ct *CRUDTools) GetListResourcesTool() (mcp.Tool, server.ToolHandlerFunc) {
+	return listResourcesToolDef, ct.handleListResources
+}
+
+func (ct *CRUDTools) GetGetResourceTool() (mcp.Tool, server.ToolHandlerFunc) {
+	return getResourceToolDef, ct.handleGetResource
+}
+
+func (ct *CRUDTools) GetCreateResourceTool() (mcp.Tool, server.ToolHandlerFunc) {
+	return createResourceToolDef, ct.handleCreateResource
+}
+
+func (ct *CRUDTools) GetUpdateResourceTool() (mcp.Tool, server.ToolHandlerFunc) {
+	return updateResourceToolDef, ct.handleUpdateResource
+}
+
+func (ct *CRUDTools) GetDeleteResourceTool() (mcp.Tool, server.ToolHandlerFunc) {
+	return deleteResourceToolDef, ct.handleDeleteResource
 }
 
 // Tool handlers - TODO: implement full CRUD with RBAC in separate task
