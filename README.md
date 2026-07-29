@@ -1,7 +1,8 @@
 # GoREST-MCP Plugin
 
 [![CI](https://github.com/nicolasbonnici/gorest-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/nicolasbonnici/gorest-mcp/actions/workflows/ci.yml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/nicolasbonnici/gorest-mcp)](https://goreportcard.com/report/github.com/nicolasbonnici/gorest-mcp)
+[![Go Reference](https://pkg.go.dev/badge/github.com/nicolasbonnici/gorest-mcp.svg)](https://pkg.go.dev/github.com/nicolasbonnici/gorest-mcp)
+[![Go Version](https://img.shields.io/github/go-mod/go-version/nicolasbonnici/gorest-mcp)](https://github.com/nicolasbonnici/gorest-mcp/blob/HEAD/go.mod)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 The **gorest-mcp** plugin integrates the [Model Context Protocol (MCP)](https://modelcontextprotocol.io) into GoREST applications, enabling AI agents (like Claude) to interact with GoREST APIs through a standardized protocol.
