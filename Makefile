@@ -13,6 +13,8 @@ GOLINT=golangci-lint
 EXAMPLE_DIR=examples/basic
 
 # Default target
+GOLANGCI_LINT_VERSION := v2.12.2
+
 .DEFAULT_GOAL := help
 
 help:
@@ -22,7 +24,7 @@ help:
 	@echo "  make build         - Build the plugin"
 	@echo "  make test          - Run tests"
 	@echo "  make coverage      - Run tests with coverage report"
-	@echo "  make lint          - Run all quality checks (gofmt, vet, staticcheck, misspell, gocyclo, errcheck)"
+	@echo "  make lint          - Run golangci-lint (bundles staticcheck, errcheck, govet, gocyclo, misspell)"
 	@echo "  make clean         - Clean build artifacts"
 	@echo "  make run           - Run the basic example"
 	@echo "  make example       - Build and run basic example"
@@ -75,24 +77,10 @@ example: build
 # Install development tools
 install-tools:
 	@echo "[INFO] Installing development tools..."
-	@command -v golangci-lint >/dev/null 2>&1 || \
-		(echo "  Installing golangci-lint..." && \
-		$(GO) install github.com/golangci/golangci-lint/cmd/golangci-lint@latest)
-	@command -v staticcheck >/dev/null 2>&1 || \
-		(echo "  Installing staticcheck..." && \
-		$(GO) install honnef.co/go/tools/cmd/staticcheck@latest)
-	@command -v ineffassign >/dev/null 2>&1 || \
-		(echo "  Installing ineffassign..." && \
-		$(GO) install github.com/gordonklaus/ineffassign@latest)
-	@command -v misspell >/dev/null 2>&1 || \
-		(echo "  Installing misspell..." && \
-		$(GO) install github.com/client9/misspell/cmd/misspell@latest)
-	@command -v errcheck >/dev/null 2>&1 || \
-		(echo "  Installing errcheck..." && \
-		$(GO) install github.com/kisielk/errcheck@latest)
-	@command -v gocyclo >/dev/null 2>&1 || \
-		(echo "  Installing gocyclo..." && \
-		$(GO) install github.com/fzipp/gocyclo/cmd/gocyclo@latest)
+	@if ! golangci-lint --version 2>/dev/null | grep -qE 'version v?2\.'; then \
+		echo "  Installing golangci-lint $(GOLANGCI_LINT_VERSION)..."; \
+		GOWORK=off go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@$(GOLANGCI_LINT_VERSION); \
+	fi
 	@echo "✓ Development tools installed"
 
 # Tidy dependencies
