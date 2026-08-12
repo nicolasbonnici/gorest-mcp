@@ -5,7 +5,7 @@ go 1.26
 require (
 	github.com/gofiber/fiber/v3 v3.4.0
 	github.com/mark3labs/mcp-go v0.57.0
-	github.com/nicolasbonnici/gorest v0.6.12
+	github.com/nicolasbonnici/gorest v0.6.13
 	github.com/stretchr/testify v1.11.1
 	golang.org/x/time v0.15.0
 )
@@ -20,7 +20,7 @@ require (
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-playground/validator/v10 v10.30.3 // indirect
 	github.com/go-sql-driver/mysql v1.10.0 // indirect
-	github.com/gofiber/schema v1.8.3 // indirect
+	github.com/gofiber/schema v1.8.4 // indirect
 	github.com/gofiber/utils/v2 v2.4.1 // indirect
 	github.com/golang-jwt/jwt/v5 v5.3.1 // indirect
 	github.com/google/jsonschema-go v0.4.3 // indirect
@@ -52,5 +52,5 @@ require (
 	modernc.org/libc v1.74.4 // indirect
 	modernc.org/mathutil v1.7.1 // indirect
 	modernc.org/memory v1.11.0 // indirect
-	modernc.org/sqlite v1.55.0 // indirect
+	modernc.org/sqlite v1.56.0 // indirect
 )
