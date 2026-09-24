@@ -4,7 +4,7 @@ go 1.26.0
 
 require (
 	github.com/gofiber/fiber/v3 v3.5.0
-	github.com/mark3labs/mcp-go v1.1.0
+	github.com/mark3labs/mcp-go v1.1.1
 	github.com/nicolasbonnici/gorest v0.7.2
 	github.com/stretchr/testify v1.12.1
 	golang.org/x/time v0.16.0
