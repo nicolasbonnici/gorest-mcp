@@ -2,6 +2,8 @@ module github.com/nicolasbonnici/gorest-mcp
 
 go 1.26.0
 
+toolchain go1.26.9
+
 require (
 	github.com/gofiber/fiber/v3 v3.6.1
 	github.com/mark3labs/mcp-go v1.3.0
