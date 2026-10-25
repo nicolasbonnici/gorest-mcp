@@ -7,7 +7,7 @@ toolchain go1.26.10
 require (
 	github.com/gofiber/fiber/v3 v3.6.1
 	github.com/mark3labs/mcp-go v1.3.0
-	github.com/nicolasbonnici/gorest v0.7.4
+	github.com/nicolasbonnici/gorest v0.7.5
 	github.com/stretchr/testify v1.12.1
 	golang.org/x/time v0.16.0
 )
@@ -20,7 +20,7 @@ require (
 	github.com/go-playground/universal-translator v0.18.2 // indirect
 	github.com/go-playground/validator/v10 v10.30.5 // indirect
 	github.com/go-sql-driver/mysql v1.10.1 // indirect
-	github.com/gofiber/schema v1.8.8 // indirect
+	github.com/gofiber/schema v1.9.0 // indirect
 	github.com/gofiber/utils/v2 v2.6.2 // indirect
 	github.com/golang-jwt/jwt/v5 v5.3.1 // indirect
 	github.com/google/jsonschema-go v0.4.3 // indirect
