@@ -6,8 +6,8 @@ toolchain go1.26.10
 
 require (
 	github.com/gofiber/fiber/v3 v3.6.1
-	github.com/mark3labs/mcp-go v1.3.0
-	github.com/nicolasbonnici/gorest v0.7.5
+	github.com/mark3labs/mcp-go v1.4.0
+	github.com/nicolasbonnici/gorest v0.7.6
 	github.com/stretchr/testify v1.12.1
 	golang.org/x/time v0.16.0
 )
@@ -21,7 +21,7 @@ require (
 	github.com/go-playground/validator/v10 v10.30.5 // indirect
 	github.com/go-sql-driver/mysql v1.10.1 // indirect
 	github.com/gofiber/schema v1.9.0 // indirect
-	github.com/gofiber/utils/v2 v2.6.2 // indirect
+	github.com/gofiber/utils/v2 v2.6.3 // indirect
 	github.com/golang-jwt/jwt/v5 v5.3.1 // indirect
 	github.com/google/jsonschema-go v0.4.3 // indirect
 	github.com/google/uuid v1.6.0 // indirect
@@ -41,7 +41,7 @@ require (
 	github.com/spf13/cast v1.10.0 // indirect
 	github.com/tinylib/msgp v1.6.5 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
-	github.com/valyala/fasthttp v1.76.0 // indirect
+	github.com/valyala/fasthttp v1.77.0 // indirect
 	github.com/yosida95/uritemplate/v3 v3.0.2 // indirect
 	go.yaml.in/yaml/v3 v3.0.5 // indirect
 	golang.org/x/crypto v0.58.0 // indirect
