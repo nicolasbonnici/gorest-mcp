@@ -6,7 +6,7 @@ toolchain go1.26.11
 
 require (
 	github.com/gofiber/fiber/v3 v3.7.0
-	github.com/mark3labs/mcp-go v1.5.0
+	github.com/mark3labs/mcp-go v1.6.0
 	github.com/nicolasbonnici/gorest v0.7.8
 	github.com/stretchr/testify v1.12.1
 	golang.org/x/time v0.16.0
